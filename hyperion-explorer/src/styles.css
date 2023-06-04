@@ -15,6 +15,25 @@ body {
 }
 
 /*container responsive*/
+span { 
+  color: white;
+}
+
+.main-container{
+  background-color: black;
+}
+.mat-card {
+  background-color: rgb(24, 24, 24);
+}
+.mat-tree {
+  background-color: rgb(24, 24, 24);
+}
+.mat-table {
+  background-color: rgb(24, 24, 24);
+}
+.mat-paginator {
+  background-color: rgb(24, 24, 24);
+}
 .container {
   width: 100%;
 }

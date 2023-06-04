@@ -1,6 +1,6 @@
 <mat-progress-spinner [diameter]="45" *ngIf="!accountService.loaded" mode="indeterminate"></mat-progress-spinner>
 
-<div class="container">
+<div class="container mainContainer">
 
   <div *ngIf="!accountService.jsonData && accountService.loaded" fxLayout="column"
        fxLayoutAlign="start center"
@@ -123,7 +123,7 @@
         <h3>
           <fa-layers [fixedWidth]="true" style="margin-right: 5px">
             <fa-icon [icon]="faCircle" transform="grow-3"></fa-icon>
-            <fa-icon [icon]="faStar" [inverse]="true" transform="shrink-5"></fa-icon>
+            <fa-icon [icon]="faStar" class="icon-color" transform="shrink-5"></fa-icon>
           </fa-layers>
           Tokens
           <fa-icon [icon]="faQuestionCircle" class="faded float-r pointer"
@@ -154,7 +154,7 @@
         <h3>
           <fa-layers [fixedWidth]="true" style="margin-right: 5px">
             <fa-icon [icon]="faCircle" transform="grow-3"></fa-icon>
-            <fa-icon [icon]="faLink" [inverse]="true" transform="shrink-5"></fa-icon>
+            <fa-icon [icon]="faLink" class="icon-color" transform="shrink-5"></fa-icon>
           </fa-layers>
           Permissions & Keys
         </h3>
@@ -288,7 +288,7 @@
         <h3 style="margin-top: 0;">
           <fa-layers [fixedWidth]="true" style="margin-right: 5px">
             <fa-icon [icon]="faCircle" transform="grow-3"></fa-icon>
-            <fa-icon [icon]="faHistory" [inverse]="true" transform="shrink-5"></fa-icon>
+            <fa-icon [icon]="faHistory" class="icon-color" transform="shrink-5"></fa-icon>
           </fa-layers>
           Actions
         </h3>

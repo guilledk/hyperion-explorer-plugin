@@ -20,8 +20,8 @@
         <div fxLayout="row" fxLayoutAlign="start start">
           <h2 style="margin-bottom: -15px; color: #9c9c9c; margin-top: 0; margin-right: 10px">
             <fa-layers [fixedWidth]="true" style="margin-right: 2px">
-              <fa-icon [icon]="faCircle" transform="grow-1"></fa-icon>
-              <fa-icon [icon]="faExchange" [inverse]="true" transform="shrink-4"></fa-icon>
+              <fa-icon [icon]="faCircle" style="color: white;" transform="grow-1"></fa-icon>
+              <fa-icon [icon]="faExchange" style="color: black;" transform="shrink-4"></fa-icon>
             </fa-layers>
             Transaction
           </h2>
@@ -65,7 +65,7 @@
       <h3 style="margin-top: 0;">
         <fa-layers [fixedWidth]="true" style="margin-right: 5px">
           <fa-icon [icon]="faCircle" transform="grow-3"></fa-icon>
-          <fa-icon [icon]="faHistory" [inverse]="true" transform="shrink-5"></fa-icon>
+          <fa-icon [icon]="faHistory" style="color: black;" transform="shrink-5"></fa-icon>
         </fa-layers>
         {{tx.actions.length}} Action<span *ngIf="tx.actions.length > 1">s</span>
       </h3>

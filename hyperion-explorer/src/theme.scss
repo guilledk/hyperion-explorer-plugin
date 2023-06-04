@@ -12,7 +12,14 @@ $hyperion: (
 
 $primary: mat.define-palette($hyperion, primary);
 $accent: mat.define-palette($hyperion, accent);
-$theme: mat.define-light-theme($primary, $accent);
+
+
+// $theme: mat.define-light-theme($primary, $accent);
+$theme: mat.define-dark-theme($primary, $accent);
+
+
+
+
 
 @include mat.all-component-themes($theme);
 
