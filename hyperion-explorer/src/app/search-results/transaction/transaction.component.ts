@@ -10,6 +10,7 @@ import {faSadTear} from '@fortawesome/free-solid-svg-icons/faSadTear';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons/faSpinner';
 import {ChainService} from '../../services/chain.service';
 import {Title} from '@angular/platform-browser';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-transaction',
@@ -59,7 +60,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
       if (this.tx.actions[0].act.data.ipfs_hash) {
         this.ipfsImageUrl = this.tx.actions[0].act.data.ipfs_hash
-        this.ipfsImageUrl = `https://ipfs.ancap.tech/ipfs/${this.ipfsImageUrl}/image.png`
+        this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
         this.hasImage = true
       }
       else{

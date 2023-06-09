@@ -3,5 +3,6 @@ export const environment = {
   eosioNodeUrl: '',
   hyperionApiUrl: '',
   systemContract: 'eosio',
-  userResourcesTable: 'userres'
+  userResourcesTable: 'userres',
+  ipfsUrl: ''
 };

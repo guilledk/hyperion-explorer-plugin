@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  eosioNodeUrl: 'http://192.168.10.120:7000',
-  hyperionApiUrl: 'http://192.168.10.120:7000',
+  eosioNodeUrl: 'https://skynet.ancap.tech',
+  hyperionApiUrl: 'https://skynet.ancap.tech',
   systemContract: 'eosio',
-  userResourcesTable: 'userres'
+  userResourcesTable: 'userres',
+  ipfsUrl: ''
 };
 
 /*
