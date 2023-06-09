@@ -16,6 +16,12 @@
   padding-bottom: 4px;
 }
 
+img {
+  height: 500px;
+  aspect-ratio: 'square';
+  cursor: pointer;
+}
+
 /*table responsive*/
 @media (max-width: 599px) {
   .mat-table .mat-header-row {

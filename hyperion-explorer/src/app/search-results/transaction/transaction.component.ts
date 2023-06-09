@@ -31,6 +31,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
   txID: string;
   countdownLoop: any;
   countdownTimer = 0;
+  ipfsImageUrl: string;
+  hasImage: boolean
 
   objectKeyCount(obj): number {
     try {
@@ -41,15 +43,28 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
 
   constructor(private activatedRoute: ActivatedRoute,
-              public accountService: AccountService,
-              public chainData: ChainService,
-              private title: Title) {
+    public accountService: AccountService,
+    public chainData: ChainService,
+    private title: Title) {
+  }
+
+  openImage() {
+    window.open(this.ipfsImageUrl, '_blank');
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (routeParams) => {
       this.txID = routeParams.transaction_id;
       this.tx = await this.accountService.loadTxData(routeParams.transaction_id);
+
+      if (this.tx.actions[0].act.data.ipfs_hash) {
+        this.ipfsImageUrl = this.tx.actions[0].act.data.ipfs_hash
+        this.ipfsImageUrl = `https://ipfs.ancap.tech/ipfs/${this.ipfsImageUrl}/image.png`
+        this.hasImage = true
+      }
+      else{
+        this.hasImage = false
+      }
 
       if (!this.chainData.chainInfoData.chain_name) {
         this.title.setTitle(`TX ${routeParams.transaction_id.slice(0, 8)} • Hyperion Explorer`);

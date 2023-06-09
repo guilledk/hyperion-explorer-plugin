@@ -2,3 +2,4 @@
 /.idea
 hyperion-explorer/node_modules
 hyperion-explorer/.idea
+./dist
