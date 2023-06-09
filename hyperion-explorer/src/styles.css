@@ -20,8 +20,17 @@ span {
 }
 
 .main-container{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto;
   background-color: black;
 }
+
+.main-container::-webkit-scrollbar {
+  display: none;
+}
+
+
 .mat-card {
   background-color: rgb(24, 24, 24);
 }

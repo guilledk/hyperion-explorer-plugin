@@ -255,6 +255,23 @@ export class AccountService {
     }
   }
 
+  async loadLastGeneratedImages(): Promise<string[]> {
+    this.loaded = false;
+    const result = []
+    try {
+      const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
+      for (const action of data['actions']) {
+        result.push(`${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`)        
+      }
+      this.loaded = true;
+      return result;
+    } catch (error) {
+      console.log(error);
+      this.loaded = true;
+      return null;
+    }
+  }
+
   async loadBlockData(blockNum: number): Promise<any> {
     this.loaded = false;
     try {

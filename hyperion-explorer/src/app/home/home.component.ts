@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   filteredAccounts: string[];
   faSearch = faSearch;
   searchPlaceholder: string;
+  lastGeneratedImages: string[];
   placeholders = [
     'Search by account name...',
     'Search by block number...',
@@ -56,6 +57,12 @@ export class HomeComponent implements OnInit {
     if (this.chainData.chainInfoData.chain_name) {
       this.title.setTitle(`${this.chainData.chainInfoData.chain_name} Hyperion Explorer`);
     }
+    this.accountService.loadLastGeneratedImages().then(result => {
+      this.lastGeneratedImages = [...result]
+    }).catch(error => {
+      console.log(error)
+    })
+
   }
 
   async submit(): Promise<void> {
