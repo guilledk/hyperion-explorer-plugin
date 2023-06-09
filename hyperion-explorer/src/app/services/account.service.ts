@@ -261,7 +261,7 @@ export class AccountService {
     try {
       const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
       for (const action of data['actions']) {
-        result.push(`${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`)        
+        result.push([`${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`, action.trx_id])
       }
       this.loaded = true;
       return result;

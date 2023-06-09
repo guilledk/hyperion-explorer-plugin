@@ -44,11 +44,26 @@
   </mat-card>
   <div class="main-images-container">
     <div class="images-container">
-      <img class="images" [src]="lastGeneratedImages[0]" />
-      <img class="images" [src]="lastGeneratedImages[1]" />
-      <img class="images" [src]="lastGeneratedImages[2]" />
-      <img class="images" [src]="lastGeneratedImages[3]" />
-      <img class="images" [src]="lastGeneratedImages[4]" />
+      <div class="image-box" (click)="openTransactionDetail(lastGeneratedImages[0][1])">
+        <img class="image" [src]="lastGeneratedImages[0][0]" />
+        <p>{{lastGeneratedImages[0][1]}}</p>
+      </div>
+      <div class="image-box" (click)="openTransactionDetail(lastGeneratedImages[1][1])">
+        <img class="image" [src]="lastGeneratedImages[1][0]" />
+        <p>{{lastGeneratedImages[1][1]}}</p>
+      </div>
+      <div class="image-box" (click)="openTransactionDetail(lastGeneratedImages[2][1])">
+        <img class="image" [src]="lastGeneratedImages[2][0]" />
+        <p>{{lastGeneratedImages[2][1]}}</p>
+      </div>
+      <div class="image-box" (click)="openTransactionDetail(lastGeneratedImages[3][1])">
+        <img class="image" [src]="lastGeneratedImages[3][0]" />
+        <p>{{lastGeneratedImages[3][1]}}</p>
+      </div>
+      <div class="image-box" (click)="openTransactionDetail(lastGeneratedImages[4][1])">
+        <img class="image" [src]="lastGeneratedImages[4][0]" />
+        <p>{{lastGeneratedImages[4][1]}}</p>
+      </div>
     </div>
   </div>
 

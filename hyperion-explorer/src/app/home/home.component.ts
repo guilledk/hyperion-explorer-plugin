@@ -7,6 +7,7 @@ import {AccountService} from '../services/account.service';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 import {ChainService} from '../services/chain.service';
 import {Title} from '@angular/platform-browser';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-home',
@@ -63,6 +64,10 @@ export class HomeComponent implements OnInit {
       console.log(error)
     })
 
+  }
+
+  openTransactionDetail(txId: string) {
+    window.open(`${environment.hyperionApiUrl}/transaction/${txId}`, '_blank');
   }
 
   async submit(): Promise<void> {

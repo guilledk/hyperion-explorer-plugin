@@ -44,6 +44,21 @@
   padding-bottom: 30px;
 }
 
+.image {
+  cursor: pointer;
+  height: 80%;
+}
+
+p {
+  cursor: pointer;
+  color: white;
+  width: 80%;
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 576px) {
   .logo {
     height: 85px;
@@ -56,7 +71,13 @@
     padding-top: 10px;
   }
 
-  .images {
+  p{
+    width: 100%;
+  }
+
+  .image-box {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     width: 60vw;
     height: 60vw;
@@ -82,7 +103,7 @@
   .home-search-input {
     width: 330px;
   }
-  .images {
+  .image-box {
     width: 100px;
     height: 100px;
   }
@@ -102,7 +123,7 @@
 }
 
 @media (min-width: 1200px) {
-  .images {
+  .image-box {
     width: 200px;
     height: 200px;
   }
