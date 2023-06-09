@@ -16,9 +16,16 @@
   padding-bottom: 4px;
 }
 
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 img {
-  height: 500px;
-  aspect-ratio: 'square';
+  width: 500px;
   cursor: pointer;
 }
 
