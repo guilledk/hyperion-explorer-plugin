@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
   }
 
   openTransactionDetail(txId: string) {
-    window.open(`${environment.hyperionApiUrl}/transaction/${txId}`, '_blank');
+    window.open(`${environment.hyperionApiUrl}/v2/explore/transaction/${txId}`, '_blank');
   }
 
   async submit(): Promise<void> {
