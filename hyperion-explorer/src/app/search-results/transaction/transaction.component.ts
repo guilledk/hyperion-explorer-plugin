@@ -10,7 +10,7 @@ import {faSadTear} from '@fortawesome/free-solid-svg-icons/faSadTear';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons/faSpinner';
 import {ChainService} from '../../services/chain.service';
 import {Title} from '@angular/platform-browser';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-transaction',

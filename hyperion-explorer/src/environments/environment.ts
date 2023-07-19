@@ -8,7 +8,7 @@ export const environment = {
   hyperionApiUrl: 'https://skynet.ancap.tech',
   systemContract: 'eosio',
   userResourcesTable: 'userres',
-  ipfsUrl: ''
+  ipfsUrl: 'https://ipfs.skygpu.net/ipfs/'
 };
 
 /*
