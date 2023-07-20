@@ -9,6 +9,26 @@
   border-left: 0;
 }
 
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+
+.discord {
+  height: 40px;
+  width: 40px;
+}
+
+.telegram {
+  margin-left: 30px;
+  height: 40px;
+  width: 40px;    
+}
+
+
 ::ng-deep .home-search-input.mat-form-field-appearance-outline .mat-form-field-outline-end {
   border-radius: 0 0 0 0 !important;
 }
@@ -35,14 +55,7 @@
   border-radius: 3px;
 }
 
-.faded {
-  color: gray;
-}
 
-.footer-text {
-  text-align: center;
-  padding-bottom: 30px;
-}
 
 .image {
   cursor: pointer;
