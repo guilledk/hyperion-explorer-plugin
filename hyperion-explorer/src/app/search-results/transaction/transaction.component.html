@@ -39,6 +39,7 @@
         <h4 style="margin: 10px 0 12px 0;" class="break-word">{{tx.trx_id}}</h4>
       </div>
       <div class="image-container">
+        <img [src]="ipfsInputImageUrl" alt="input image" (click)="openInputImage()" [hidden]="!hasInputImage" />
         <img [src]="ipfsImageUrl" alt="ai generated ipfs" (click)="openImage()" [hidden]="!hasImage" />
       </div>
       <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="15px">
@@ -59,6 +60,9 @@
               <span class="faded used">usage</span>
             </div>
             <div>{{tx.actions[0]['net_usage_words']}} bytes</div>
+          </div>
+          <div class="input-transaction-info">
+            <a [href]="inputTxUrl" target="_blank" [hidden]="!inputTxUrl">{{inputTxText}}</a>
           </div>
         </div>
       </div>

@@ -16,9 +16,16 @@
   padding-bottom: 4px;
 }
 
-.image-container {
+.input-transaction-info {
+  color: white;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;

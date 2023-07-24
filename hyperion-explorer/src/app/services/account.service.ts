@@ -272,6 +272,36 @@ export class AccountService {
     }
   }
 
+  async loadBlockDataByNumber(blockNum: number): Promise<any> {
+    try {
+      const data = await this.httpClient.post(environment.hyperionApiUrl + '/v1/chain/get_block', {
+        block_num_or_id: blockNum
+      }).toPromise();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async getBlockNonces(timestamp: number): Promise<any> {
+    const url = `${environment.hyperionApiUrl}/v2/history/get_deltas?code=telos.gpu&scope=telos.gpu&table=users&after=${timestamp}&before=${timestamp}`;
+
+    try {
+      const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
+
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+      const responseData = await response.json();
+      if (responseData === 0) throw new Error("Couldn't get nonce...");
+
+      // Extract nonces from the deltas.
+      return responseData.deltas.map(delta => delta.data.nonce);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   async loadBlockData(blockNum: number): Promise<any> {
     this.loaded = false;
     try {
