@@ -22,7 +22,7 @@
 
 .title {
   font-size: 21px;
-  color: #00a6de;
+  color: #19e70a;
   font-weight: 500;
 }
 
@@ -71,7 +71,7 @@
 
 .token {
   font-size: 20px;
-  color: #00a6de;
+  color: #19e70a;
   font-weight: 500;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .pulse {
-  background: #00a6de;
+  background: #19e70a;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 0 rgba(0, 166, 222, 0.5);

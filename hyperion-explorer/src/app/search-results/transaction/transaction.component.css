@@ -1,6 +1,6 @@
 .title {
   font-size: 21px;
-  color: #00a6de;
+  color: #19e70a;
   font-weight: 500;
 }
 
@@ -16,7 +16,12 @@
   padding-bottom: 4px;
 }
 
+.input-transaction-info a{
+  color: #19e70a;
+}
+
 .input-transaction-info {
+  
   color: white;
   display: flex;
   flex-direction: column;
