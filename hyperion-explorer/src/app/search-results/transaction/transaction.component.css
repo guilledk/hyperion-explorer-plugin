@@ -12,6 +12,23 @@
   width: 100%;
 }
 
+.table-values { 
+    font-family: monospace;
+}
+
+pre {
+  max-width: 700px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  font-family: monospace;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+
 .data-item {
   padding-bottom: 4px;
 }

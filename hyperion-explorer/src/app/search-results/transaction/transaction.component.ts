@@ -62,6 +62,10 @@ export class TransactionComponent implements OnInit, OnDestroy {
     window.open(this.ipfsInputImageUrl, '_blank');
   }
 
+  getPrettyJson(value: any){
+    return JSON.stringify(JSON.parse(value), null, 2)
+  }
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (routeParams) => {
       this.txID = routeParams.transaction_id;
