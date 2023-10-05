@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  eosioNodeUrl: '',
-  hyperionApiUrl: '',
+  ipfsUrl: 'https://ipfs.skygpu.net/ipfs/',
+  eosioNodeUrl: 'https://testnet.skygpu.net',
+  hyperionApiUrl: 'https://testnet.skygpu.net',
   systemContract: 'eosio',
   userResourcesTable: 'userres',
-  ipfsUrl: ''
 };
