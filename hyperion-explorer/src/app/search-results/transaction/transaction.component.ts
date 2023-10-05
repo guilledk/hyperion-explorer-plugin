@@ -13,6 +13,15 @@ import { Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { timestamp } from 'rxjs/operators';
 
+async function imageExists(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch (error) {
+    return false;
+  }
+}
+
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -87,6 +96,9 @@ export class TransactionComponent implements OnInit, OnDestroy {
       if (this.tx.actions[0].act.data.ipfs_hash) {
         this.ipfsImageUrl = this.tx.actions[0].act.data.ipfs_hash
         this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
+        if (!(await imageExists(this.ipfsImageUrl)))
+            this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}`
+
         this.hasImage = true
       }
       else {
