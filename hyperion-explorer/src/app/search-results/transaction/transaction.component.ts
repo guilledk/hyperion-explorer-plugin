@@ -95,9 +95,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
       if (this.tx.actions[0].act.data.ipfs_hash) {
         this.ipfsImageUrl = this.tx.actions[0].act.data.ipfs_hash
-        this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
-        if (!(await imageExists(this.ipfsImageUrl)))
+        let legacyLink = `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
+        if (!(await imageExists(legacyLink)))
             this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}`
+        else
+            this.ipfsImageUrl = legacyLink
 
         this.hasImage = true
       }
