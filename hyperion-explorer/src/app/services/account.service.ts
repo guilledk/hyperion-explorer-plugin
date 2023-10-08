@@ -6,6 +6,15 @@ import {default as HyperionStreamClient, IncomingData} from '@eosrio/hyperion-st
 import {MatTableDataSource} from '@angular/material/table';
 import {PaginationService} from './pagination.service';
 
+async function imageExists(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch (error) {
+    return false;
+  }
+}
+
 interface HealthResponse {
   features: {
     streaming: {
@@ -261,7 +270,14 @@ export class AccountService {
     try {
       const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
       for (const action of data['actions']) {
-        result.push([`${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`, action.trx_id])
+        let resultImageUrl: string
+        let legacyLink = `${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`
+        if (!(await imageExists(legacyLink)))
+            resultImageUrl = `${environment.ipfsUrl}${action.act.data.ipfs_hash}`
+        else
+            resultImageUrl = legacyLink
+
+        result.push([resultImageUrl, action.trx_id])
       }
       this.loaded = true;
       return result;
