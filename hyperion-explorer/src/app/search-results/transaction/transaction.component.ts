@@ -84,7 +84,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
       if (inputTx.actions[0].act.data.binary_data) {
         this.inputTxText = JSON.parse(inputTx.actions[0].act.data.request_body).params.prompt;
         this.inputTxUrl = `${environment.hyperionApiUrl}/v2/explore/transaction/${inputTxId}`
-        this.ipfsInputImageUrl = `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}/image.png`
+        let legacyLink = `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}/image.png`
+        if (!(await imageExists(legacyLink)))
+            this.ipfsInputImageUrl = `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}`
+        else
+            this.ipfsInputImageUrl = legacyLink
         this.hasInputImage = true
       }
       else {
