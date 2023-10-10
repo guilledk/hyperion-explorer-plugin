@@ -270,12 +270,24 @@ export class AccountService {
     try {
       const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
       for (const action of data['actions']) {
-        let resultImageUrl: string
-        let legacyLink = `${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`
-        if (!(await imageExists(legacyLink)))
-            resultImageUrl = `${environment.ipfsUrl}${action.act.data.ipfs_hash}`
-        else
-            resultImageUrl = legacyLink
+        let resultImageUrl: string = null;
+        const link = `${environment.ipfsUrl}${action.act.data.ipfs_hash}`
+        const legacyLink = link + `/image.png`
+
+        const results: [boolean, boolean] = await Promise.all(
+            [imageExists(link), imageExists(legacyLink)])
+
+        if (results[0])
+            resultImageUrl = link;
+
+        if (results[1])
+            resultImageUrl = legacyLink;
+
+        if (!resultImageUrl)
+            throw new Error('Couldnt figure out image link');
+
+        // thumbnail service
+        resultImageUrl = `${environment.thumborUrl}/unsafe/300x300/${encodeURIComponent(resultImageUrl)}`;
 
         result.push([resultImageUrl, action.trx_id])
       }

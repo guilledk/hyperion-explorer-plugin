@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  eosioNodeUrl: 'https://skynet.ancap.tech',
-  hyperionApiUrl: 'https://skynet.ancap.tech',
+  eosioNodeUrl: 'https://testnet.skygpu.tech',
+  thumborUrl: 'https://thumbor.skygpu.net',
+  hyperionApiUrl: 'https://testnet.skygpu.tech',
   systemContract: 'eosio',
   userResourcesTable: 'userres',
   ipfsUrl: 'https://ipfs.skygpu.net/ipfs/'
