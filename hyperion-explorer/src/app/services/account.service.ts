@@ -5,15 +5,8 @@ import {AccountCreationData, GetAccountResponse} from '../interfaces';
 import {default as HyperionStreamClient, IncomingData} from '@eosrio/hyperion-stream-client';
 import {MatTableDataSource} from '@angular/material/table';
 import {PaginationService} from './pagination.service';
+import {checkLinksForValidMedia} from 'src/utils';
 
-async function imageExists(url: string): Promise<boolean> {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-}
 
 interface HealthResponse {
   features: {
@@ -270,26 +263,15 @@ export class AccountService {
     try {
       const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
       for (const action of data['actions']) {
-        let resultImageUrl: string = null;
-        const link = `${environment.ipfsUrl}${action.act.data.ipfs_hash}`
-        const legacyLink = link + `/image.png`
-
-        const results: [boolean, boolean] = await Promise.all(
-            [imageExists(link), imageExists(legacyLink)])
-
-        if (results[0])
-            resultImageUrl = link;
-
-        if (results[1])
-            resultImageUrl = legacyLink;
-
-        if (!resultImageUrl)
-            throw new Error('Couldnt figure out image link');
-
-        // thumbnail service
-        resultImageUrl = `${environment.thumborUrl}/unsafe/300x300/${encodeURIComponent(resultImageUrl)}`;
-
-        result.push([resultImageUrl, action.trx_id])
+        let resultImageUrl = await checkLinksForValidMedia([
+            `${environment.ipfsUrl}${action.act.data.ipfs_hash}`,
+            `${environment.ipfsUrl}${action.act.data.ipfs_hash}/image.png`,
+        ]);
+        if (resultImageUrl) {
+          // thumbnail service
+          resultImageUrl = `${environment.thumborUrl}/unsafe/300x300/${encodeURIComponent(resultImageUrl)}`;
+          result.push([resultImageUrl, action.trx_id]);
+        }
       }
       this.loaded = true;
       return result;

@@ -11,16 +11,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
 import { ChainService } from '../../services/chain.service';
 import { Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
-import { timestamp } from 'rxjs/operators';
-
-async function imageExists(url: string): Promise<boolean> {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-}
+import {checkLinksForValidMedia} from 'src/utils';
 
 @Component({
   selector: 'app-transaction',
@@ -83,13 +74,16 @@ export class TransactionComponent implements OnInit, OnDestroy {
       const inputTx = await this.accountService.loadTxData(inputTxId);
       if (inputTx.actions[0].act.data.binary_data) {
         this.inputTxText = JSON.parse(inputTx.actions[0].act.data.request_body).params.prompt;
-        this.inputTxUrl = `${environment.hyperionApiUrl}/v2/explore/transaction/${inputTxId}`
-        let legacyLink = `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}/image.png`
-        if (!(await imageExists(legacyLink)))
-            this.ipfsInputImageUrl = `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}`
-        else
-            this.ipfsInputImageUrl = legacyLink
-        this.hasInputImage = true
+        this.inputTxUrl = `${environment.hyperionApiUrl}/v2/explore/transaction/${inputTxId}`;
+        const link = await checkLinksForValidMedia([
+            `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}`,
+            `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}/image.png`
+        ]);
+        if (link) {
+          this.ipfsInputImageUrl = link;
+          this.hasInputImage = true;
+        } else
+          this.hasInputImage = false;
       }
       else {
         this.inputTxText = JSON.parse(inputTx.actions[0].act.data.request_body).params.prompt;
@@ -99,13 +93,15 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
       if (this.tx.actions[0].act.data.ipfs_hash) {
         this.ipfsImageUrl = this.tx.actions[0].act.data.ipfs_hash
-        let legacyLink = `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
-        if (!(await imageExists(legacyLink)))
-            this.ipfsImageUrl = `${environment.ipfsUrl}${this.ipfsImageUrl}`
-        else
-            this.ipfsImageUrl = legacyLink
-
-        this.hasImage = true
+        const link = await checkLinksForValidMedia([
+            `${environment.ipfsUrl}${this.ipfsImageUrl}`,
+            `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
+        ]);
+        if (link) {
+          this.ipfsImageUrl = link;
+          this.hasImage = true;
+        } else
+          this.hasImage = false;
       }
       else {
         this.hasImage = false
