@@ -80,7 +80,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
             `${environment.ipfsUrl}${inputTx.actions[0].act.data.binary_data}/image.png`
         ]);
         if (link) {
-          this.ipfsInputImageUrl = link;
+          this.ipfsInputImageUrl = `${environment.thumborUrl}/unsafe/512x512/${encodeURIComponent(link)}`;
           this.hasInputImage = true;
         } else
           this.hasInputImage = false;
@@ -98,7 +98,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
             `${environment.ipfsUrl}${this.ipfsImageUrl}/image.png`
         ]);
         if (link) {
-          this.ipfsImageUrl = link;
+          this.ipfsImageUrl = `${environment.thumborUrl}/unsafe/512x512/${encodeURIComponent(link)}`;
           this.hasImage = true;
         } else
           this.hasImage = false;
