@@ -184,7 +184,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
     for (let requestCounter = 0; requestCounter < maxRequests; requestCounter++) {
       try {
-        const url = `${environment.hyperionApiUrl}/v2/history/get_deltas?code=telos.gpu&scope=telos.gpu&table=queue&sort=desc&before=${new Date(before).toISOString()}&after=${new Date(after).toISOString()}`;
+        const url = `${environment.hyperionApiUrl}/v2/history/get_deltas?code=gpu.scd&scope=gpu.scd&table=queue&sort=desc&before=${new Date(before).toISOString()}&after=${new Date(after).toISOString()}`;
 
         const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
         console.log(response);

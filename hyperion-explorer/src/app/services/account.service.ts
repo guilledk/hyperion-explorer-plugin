@@ -261,7 +261,7 @@ export class AccountService {
     this.loaded = false;
     const result = []
     try {
-      const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=telos.gpu&filter=telos.gpu%3Asubmit&sort=desc`).toPromise();
+      const data = await this.httpClient.get(`${environment.hyperionApiUrl}/v2/history/get_actions?limit=5&account=gpu.scd&filter=gpu.scd%3Asubmit&sort=desc`).toPromise();
       for (const action of data['actions']) {
         let resultImageUrl = await checkLinksForValidMedia([
             `${environment.ipfsUrl}${action.act.data.ipfs_hash}`,
@@ -295,7 +295,7 @@ export class AccountService {
   }
 
   async getBlockNonces(timestamp: number): Promise<any> {
-    const url = `${environment.hyperionApiUrl}/v2/history/get_deltas?code=telos.gpu&scope=telos.gpu&table=users&after=${timestamp}&before=${timestamp}`;
+    const url = `${environment.hyperionApiUrl}/v2/history/get_deltas?code=gpu.scd&scope=gpu.scd&table=users&after=${timestamp}&before=${timestamp}`;
 
     try {
       const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
